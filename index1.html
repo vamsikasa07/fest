@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .presentation-image {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border: 4px solid #007bff;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .event {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .event:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .event h2 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        .sub-events {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f7f9fc;
+            border-left: 4px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .sub-events p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 1.1em;
+        }
+        .sub-events a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .sub-events a:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .presentation-image {
+                max-width: 280px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .event {
+                padding: 15px;
+            }
+            .event h2 {
+                font-size: 1.3em;
+            }
+            .sub-events p,
+            .sub-events a {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image at the top -->
+        <div class="image-container">
+            <img src="ironman.jpeg" alt="Event Presentation" class="presentation-image">
+        </div>
+
+        <h1>Event Registration</h1>
+
+        <div class="event" onclick="toggleSubEvents('event1')">
+            <h2>Event 1: Tech Conference</h2>
+            <div id="event1" class="sub-events">
+                <p>Sub-event 1: Keynote Speeches</p>
+                <p>Sub-event 2: Workshops</p>
+                <a href="https://forms.gle/example1" target="_blank">Register here</a>
+            </div>
+        </div>
+
+        <div class="event" onclick="toggleSubEvents('event2')">
+            <h2>Event 2: Art Expo</h2>
+            <div id="event2" class="sub-events">
+                <p>Sub-event 1: Gallery Walk</p>
+                <p>Sub-event 2: Live Painting</p>
+                <a href="https://forms.gle/example2" target="_blank">Register here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubEvents(eventId) {
+            var allSubEvents = document.querySelectorAll('.sub-events');
+            allSubEvents.forEach(function(subEvent) {
+                if (subEvent.id !== eventId) {
+                    subEvent.style.display = 'none'; // Hide other sub-events
+                }
+            });
+
+            var currentSubEvent = document.getElementById(eventId);
+            if (currentSubEvent.style.display === "none" || currentSubEvent.style.display === "") {
+                currentSubEvent.style.display = "block"; // Show the clicked sub-events
+            } else {
+                currentSubEvent.style.display = "none"; // Hide if already visible
+            }
+        }
+    </script>
+</body>
+</html>
